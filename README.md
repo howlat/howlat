@@ -1,7 +1,13 @@
 Howlat - Chat Application
 ==========================
 [![Howlat Room](http://chat.howlat.me/madgloryint/parleychat/badge.png)](http://chat.howlat.me/madgloryint/parleychat)
-[![Code Climate](https://codeclimate.com/repos/5333e475e30ba02886001cad/badges/806dd8dae812e4808df0/gpa.png)](https://codeclimate.com/repos/5333e475e30ba02886001cad/feed)
+
+# Contributing
+
+**We began building this as a hackathon project.  The code is *ok* but could use some work.  It's about 90% of what is needed to run a decent behind the firewall chat application.  It ueses angularJS, Ruby on Rails, and XMPP.**
+
+We'd like to see this finished and decided to open source it.  If you're interested in using this, we'd love the help!
+
 # Overview
 
 The Chat Application provides the following high level functionality:
