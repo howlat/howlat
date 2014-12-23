@@ -1,0 +1,13 @@
+en:
+  enumerize:
+    preferences:
+      audio_notification:
+        all: All Messages
+        chat_or_mentions: Chat Messages and Mentions
+        mentions: Mentions Only
+        none: No Messages
+      desktop_notification:
+        all: All Messages
+        chat_or_mentions: Chat Messages and Mentions
+        mentions: Mentions Only
+        none: No Messages

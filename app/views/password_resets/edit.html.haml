@@ -1,0 +1,7 @@
+- content_for :header, "Change my password"
+= simple_form_for @form, as: 'password', url: password_reset_path(@token), html: { :method => :put } do |f|
+  = hidden_field_tag :token, @token
+  = f.input :new_password, required: true
+  = f.input :new_password_confirmation, required: true, label: 'Re-type new password'
+  = f.submit "Update my password", class: 'btn btn-primary'
+  = link_to "Back to front page", root_path, class: 'btn'

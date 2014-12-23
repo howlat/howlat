@@ -1,0 +1,16 @@
+common: &common
+  adapter: postgresql
+  username: howlat
+  password:
+
+development:
+  <<: *common
+  database: howlat_development
+
+test:
+  <<: *common
+  database: howlat_test
+
+production:
+  <<: *common
+  database: howlat_production

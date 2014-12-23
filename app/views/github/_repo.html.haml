@@ -1,0 +1,21 @@
+.list-group-item
+  %h5.list-group-item-heading
+    %strong= repo.full_name
+    %span.btn.btn-default.btn-xs.disabled
+      %span.glyphicon.glyphicon-star
+      = repo.stargazers_count
+    - if repo.private?
+      %span.btn.btn-default.btn-xs.disabled
+        %span.glyphicon.glyphicon-lock
+  %p
+    %small.list-group-item-text= repo.description
+  %p
+    = simple_form_for(Room.new) do |f|
+      = hidden_field_tag :find_or_create, 1
+      = f.input_field :name, as: :hidden, value: repo.full_name
+      = f.fields_for :repository_attributes, f.object.build_repository(name: repo.full_name, type: 'github') do |r|
+        = r.input :name, as: :hidden
+        = r.input :type, as: :hidden
+      = f.input_field :access, as: :hidden, value: repo.private? ? 'private' : 'public'
+      = f.input_field :access_policy, as: :hidden, value: 'github'
+      = f.button :submit, class: 'btn-sm btn-success', value: 'Join or Create room'

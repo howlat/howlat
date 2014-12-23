@@ -1,0 +1,11 @@
+- content_for :header, "Rooms"
+.row
+  .col-md-6
+    %h2 Your Rooms
+    .list-group
+      = render @rooms
+      = paginate @rooms
+  .col-md-6
+    - if can? :create, Repositories::GithubRepository
+      %h2 Repositories
+      = render 'github/repositories'

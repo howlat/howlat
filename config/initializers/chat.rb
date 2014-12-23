@@ -1,0 +1,1 @@
+CHAT = YAML.load_file("#{::Rails.root}/config/chat.yml")[::Rails.env]

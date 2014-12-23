@@ -1,0 +1,68 @@
+<%= javascript_include_tag "repo_search" %>
+<div ng-app="repoSearch">
+  <div ng-controller="MainCtrl">
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#search-repos">Search</a></li>
+      <li><a data-toggle="tab" href="#private-repos" ng-click="loadPrivateRepos()">Private</a></li>
+      <li><a data-toggle="tab" href="#public-repos" ng-click="loadPublicRepos()">Public</a></li>
+      <li><a data-toggle="tab" href="#starred-repos" ng-click="loadStarredRepos()">Starred</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="search-repos">
+        <p></p>
+        <form class="form-inline" ng-submit="repositories.search.page = 1; loadSearchResults()">
+          <input placeholder="Owner" class="form-control input-sm" ng-model="query.owner" type="text" />
+          <input placeholder="Repo" class="form-control input-sm" ng-model="query.repo" type="text" />
+          <input class="btn btn-sm btn-primary" type="submit" ng-disabled="loading" ng-value="(loading) ? 'Loading...' : 'Search'">
+          <div>
+            <label class="checkbox-inline input-sm">Search in:</label>
+            <label class="checkbox-inline input-sm"><input type="checkbox" ng-model="query.scopes.name">name</label>
+            <label class="checkbox-inline input-sm"><input type="checkbox" ng-model="query.scopes.description">description</label>
+            <label class="checkbox-inline input-sm"><input type="checkbox" ng-model="query.scopes.readme" value="readme">readme</label>
+          </div>
+        </form>
+        <ul class="pager">
+          <li>
+            <button class="btn btn-sm btn-default" ng-disabled="repositories.search.page == 1 || loading" ng-click="repositories.search.page = repositories.search.page - 1">
+              Previous
+            </button>
+          </li>
+          <li><button class="btn btn-sm btn-default" disabled="disabled">{{repositories.search.page}}/{{repositories.search.pages}}</button></li>
+          <li>
+            <button class="btn btn-sm btn-default" ng-disabled="repositories.search.page >= repositories.search.pages || loading" ng-click="repositories.search.page = repositories.search.page + 1">
+              Next
+            </button>
+          </li>
+        </ul>
+        <div class="list-group">
+          <div class="list-group-item" ng-repeat="repo in repositories.search.items" ng-include="'/templates/repo-search/githubRepo.html'">
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="private-repos">
+        <p></p>
+        <p>&nbsp;<span ng-show="loading">Loading...</span></p>
+        <div class="list-group">
+          <div class="list-group-item" ng-repeat="repo in repositories.private.items" ng-include="'/templates/repo-search/githubRepo.html'">
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="public-repos">
+        <p></p>
+        <p>&nbsp;<span ng-show="loading">Loading...</span></p>
+        <div class="list-group">
+          <div class="list-group-item" ng-repeat="repo in repositories.public.items" ng-include="'/templates/repo-search/githubRepo.html'">
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="starred-repos">
+        <p></p>
+        <p>&nbsp;<span ng-show="loading">Loading...</span></p>
+        <div class="list-group">
+          <div class="list-group-item" ng-repeat="repo in repositories.starred.items" ng-include="'/templates/repo-search/githubRepo.html'">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Howlat" %></title>
+    <%= stylesheet_link_tag chatapp_asset_url('css/application.css') %>
+    <%= stylesheet_link_tag chatapp_asset_url('sprites/emoji.css') %>
+    <%= javascript_include_tag chatapp_asset_url('scripts/application.js') %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body ng-app="howlatApp">
+     <div style="height: 100%;" ng-controller='ChatCtrl' id="chat-controller">
+       <ng-include src="'app/views/room.html'" ng-controller='RoomsCtrl'></ng-include>
+     </div>
+     <%= yield %>
+  </body>
+</html>

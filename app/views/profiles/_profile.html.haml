@@ -1,0 +1,6 @@
+%p= avatar_for(profile, :medium)
+- [:name, :email, :description, :location, :company, :website].each do |attr|
+  - if profile.send(attr)
+    %p
+      %strong= "#{profile.class.human_attribute_name(attr)}:"
+      = link_to_if(attr.eql?(:website), profile.send(attr), profile.send(attr))

@@ -1,0 +1,24 @@
+- content_for :header, "Account settings"
+%h2 Account
+= simple_form_for(@user, class: 'form-inline') do |f|
+  = f.error_notification
+  = f.input :name
+  = f.input :jid, readonly: true
+  = f.input :email
+  = f.submit class: 'btn btn-primary'
+- if @user.password_set?
+  %h2 Change password
+  = render partial: '/users/password_form', locals: { form: password_change_form }
+- else
+  %h2 Reset password
+  %p You have not set password for this account yet.
+  = render partial: '/users/reset_password_form', locals: { user: @user }
+%hr
+
+- present :identity_list, user: @user do |presenter|
+  %h2 Setup One-Click Login
+
+  %p One-click login enables you to log in using an existing Github, Google, Facebook or Twitter account. Simple and secure.
+  %table.table
+    %tbody
+      = render partial: 'identities/identity', collection: presenter.identities

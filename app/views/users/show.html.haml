@@ -1,0 +1,6 @@
+- @user.profile.tap do |profile|
+  - content_for :header, profile.name
+  = render profile
+%p
+  %strong= "#{@user.class.human_attribute_name(:jid)}:"
+  = @user.jid

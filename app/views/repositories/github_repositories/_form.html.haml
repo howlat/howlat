@@ -1,0 +1,19 @@
+
+%h3 Connect Repository
+= simple_form_for([:connect, @room, @repository]) do |f|
+  = f.error :base, class: 'alert alert-danger'
+  = f.input :events, collection: @repository.class::EVENTS, label_method: :humanize, as: :check_boxes
+  .form-group
+    = f.button :submit, class: 'btn-primary'
+- if @repository.connected?
+  = simple_form_for([:disconnect, @room, @repository], method: :delete) do |f|
+    .form-group
+      = f.button :submit, 'Disconnect', class: 'btn-danger'
+%hr
+%h3
+  Badge
+  = image_tag @room.badge.image_url(self)
+= simple_form_for(:github_badge, url: nil) do |f|
+  %p.help-block
+    Copy following code and paste it to repository's Readme file
+  = f.input :markdown, input_html: { value: @room.badge.markdown(self) }, required: false

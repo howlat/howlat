@@ -1,0 +1,5 @@
+(function() {
+  var modal = $("#invitation-modal");
+  modal.find('form .alert').remove();
+  modal.find('form').prepend("<%=j render 'error' %>")
+})();

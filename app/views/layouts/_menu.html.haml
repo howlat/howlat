@@ -1,0 +1,22 @@
+- present :menu do |menu_presenter|
+  %ul.list-group
+    %span.list-group-item
+      %h4.list-group-item-heading Account
+      %p.list-group-item-text.text-muted Account settings, profile information
+    = menu_presenter.link_to "Overview", [current_user]
+    = menu_presenter.link_to "Settings", edit_user_path(current_user)
+    = menu_presenter.link_to "Edit Profile", edit_user_profile_path(current_user)
+    = menu_presenter.link_to "Preferences", edit_user_preferences_path(current_user)
+
+  %ul.list-group
+    %span.list-group-item
+      %h4.list-group-item-heading Rooms
+      %p.list-group-item-text.text-muted Rooms which you are a member of
+    %span.list-group-item
+      = link_to 'Find or create new room', rooms_path, class: 'btn btn-success'
+    - menu_presenter.rooms.each do |room|
+      .list-group-item
+        .row
+          = link_to room.name, room_friendly_path(room.name), class: 'col-md-10'
+          = link_to edit_room_path(room), class: 'col-md-2 pull-right' do
+            %span.glyphicon.glyphicon-cog

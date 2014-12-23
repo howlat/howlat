@@ -1,0 +1,8 @@
+table {
+  &.invitations, &.members, &.users {
+    tr th:first-child, tr td:first-child {
+      width: 50px;
+    }
+  }
+  .avatar { margin: 0; }
+}

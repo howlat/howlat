@@ -1,0 +1,10 @@
+%tr{id: "invitation-#{invitation.id}"}
+  %td= avatar_for(invitation.email)
+  %td
+    %i= invitation.email
+  %td
+    - if can? :manage, invitation
+      = link_to organization_room_invitation_path(invitation.room.organization_id, invitation.room_id, invitation, format: :js),method: :delete, remote: true, class: 'btn btn-danger', title: 'Cancel' do
+        %i.icon-remove.icon-white
+      = link_to resend_organization_room_invitation_path(invitation.room.organization_id, invitation.room_id, invitation, format: :js), method: :post, remote: true, class: 'btn', title: 'Send again' do
+        %i.icon-refresh

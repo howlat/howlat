@@ -1,0 +1,44 @@
+<div id="chat-thread" class="messages" ng-controller="ThreadCtrl" style="display: none;">
+	<div class="thread-root">
+  <a href="" go-to-search class="btn btn-success"><</a><img ng-src="{{root.author.avatar_url}}"/>{{root.body}}</div>
+	<ul  id="chat-thread-message-list">
+    <li ng-cloak mouse-hover class="chat-entry message row chat-entry" ng-repeat="message in messages track by $index" repeat-thread-done>
+
+      <a ng-if="message.author.id==current_user.id"  ng-click="destroy(message.id)" href='' class='btn btn-small btn-danger chat-message-delete'> <i class='icon-trash icon-white'></i></a>
+
+      <a ng-if="message.author.id==current_user.id && message.body!='file'" enable-editing href='' class='btn btn-info chat-message-edit btn-small'> <i class='icon-pencil icon-white'></i></a>
+
+      <span class="message-datetime">{{message.created_at  | date:'MM/dd/yyyy @ h:mma'}}</span>
+
+      <div class="author span1">
+           <img ng-cloak ng-src="{{message.author.avatar_url}}" alt="{{message.author.name}}"   style="width: 40px; border: 1px solid #AAA; padding: 2px;"/>
+      </div>
+      <div class="date-title" ng-if="message.author.name==='date'" class="span12">
+        {{message.body}}
+      </div>
+      <div class="span9">
+        <div ng-if="message.body!='file'" class="body" collapse-image ng-bind-html="message.body | linky"></div>
+        <div ng-if="message.attachment_content_type=='image/jpg' || message.attachment_content_type=='image/jpeg' || message.attachment_content_type=='image/png' || message.attachment_content_type=='image/gif'">
+          <a ng-href="{{message.attachment_url}}" class="fancybox">
+            <img ng-cloak ng-src="{{message.attachment_thumb_url}}"/>
+          </a>
+        </div>
+        <a ng-if="message.body=='file'" class="body"  ng-href="{{message.attachment_url}}">{{message.attachment_file_name}}</a>
+        <div ng-if="message.created_at!=message.updated_at" class="edited-info"> - Edited: {{message.updated_at  | date:'MM/dd/yyyy @ h:mma'}} </div>
+        <form ng-if="message.author.id==current_user.id" ng-submit="update(message.id);" class="edit-form" >
+          <textarea name='message' save-edit ng-model="message.body" class="chat-message"></textarea>
+          <input type="submit" value="✔" class='btn  btn-small btn-success chat-message-save'/>
+        </form>
+      </div>
+      <div style="clear: both;"></div>
+      </li>
+    </ul>
+    <button ng-click="onFileSelect()" class="btn trigger-upload"><i class="icon-upload"></i></button>
+    <form ng-submit="new()" id="thread-form">
+      <div class="input-append row-fluid">
+      <input type="text" value='' name='message' ng-model="newMessage.body" class='span10' tab-index="0" id="message-box" autocomplete="off"/>
+      <input id="message-send" type="submit" value="Send" class='btn btn-success span2' tab-index="1"/>
+      </div>
+    </form>
+
+</div>

@@ -1,0 +1,17 @@
+.modal.hide.fade{id: content_for(:modal_id), "tabindex"=> "-1", "role"=> "dialog", "aria-hidden"=>"true"}
+  .modal-header
+    %button.close{"type"=> "button", "data-dismiss"=> "modal", "aria-hidden"=> "true"}
+      ×
+    %h3
+      = content_for :modal_header
+  .modal-body
+    = content_for :modal_body
+  .modal-footer
+    = content_for :modal_footer
+    %button.btn{"type"=> "button", "data-dismiss"=> "modal", "aria-hidden"=> "true"}
+      Close
+
+- @view_flow.content.delete :modal_id
+- @view_flow.content.delete :modal_header
+- @view_flow.content.delete :modal_body
+- @view_flow.content.delete :modal_footer

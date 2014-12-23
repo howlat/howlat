@@ -1,0 +1,16 @@
+%header.navbar.navbar-default.navbar-fixed-top{role: :navigation}
+  .container
+    .navbar-header
+      = link_to "Howlat", root_path, class: 'navbar-brand'
+    - if logged_in?
+      .navbar-form.navbar-right
+        = link_to 'Logout', logout_path, method: :delete, class: 'btn btn-danger'
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          %span.navbar-text
+            Signed in as
+            = link_to current_user.display_name, current_user, class: 'label label-primary'
+    - else
+      .navbar-form.navbar-right
+        = link_to 'Login with Github', "auth/github?context=signin", class: 'btn btn-success'
+        = link_to 'Sign up with Github', "auth/github?context=signup", class: 'btn btn-primary'

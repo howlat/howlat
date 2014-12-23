@@ -1,0 +1,12 @@
+.modal.hide.fade{id: content_for(:modal_id), "tabindex"=> "-1", "role"=> "dialog", "aria-hidden"=>"true"}
+  .modal-header
+    %button.close{"type"=> "button", "data-dismiss"=> "modal", "aria-hidden"=> "true"}
+      ×
+    %h3
+      = content_for :header
+  .modal-body
+    = yield
+  .modal-footer
+    = content_for :footer
+    %button.btn{"type"=> "button", "data-dismiss"=> "modal", "aria-hidden"=> "true"}
+      Close

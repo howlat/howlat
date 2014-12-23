@@ -1,0 +1,23 @@
+= simple_form_for([@user, @user.profile]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    .row
+      .col-md-5
+        = f.input :name
+        = f.input :email
+        = f.input :description
+        = f.input :location
+        = f.input :company
+        = f.input :website
+        .form-group
+          = f.submit class: 'btn btn-primary'
+      .col-md-7
+        = avatar_for(f.object, :medium)
+        %hr
+        = f.input :avatar, label: "Upload avatar"
+        %hr
+        - if f.object.avatar_providers.present?
+          = f.association :avatar_provider, collection: f.object.avatar_providers, label_method: :provider_name, as: :radio_buttons
+        = f.input :reset_avatar, as: :boolean, label: false, inline_label: 'Reset to gravatar based on your email', input_html: { value: 1, checked: false }
+

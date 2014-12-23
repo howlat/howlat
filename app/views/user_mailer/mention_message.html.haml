@@ -1,0 +1,8 @@
+%h2= "Hi #{@mentioned.fullname}"
+%p= "You were just mentioned in #{@room.name} on Howlat."
+%br
+%p= link_to "Join the conversation", room_friendly_url(@room.name)
+%table{border: "0", cellpadding: "10", cellspacing: "10", width: "100%", style: 'background-color:#ffeecc;'}
+  %tbody
+    %td{style:"font-weight:bold; width:120px;"}= @message.author.fullname
+    %td= @message.body

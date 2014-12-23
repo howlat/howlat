@@ -1,0 +1,3 @@
+%h4	Hi!
+%p= "You've got an invitation to '#{@invitation.room.name}' room in '#{@invitation.room.owner.name}' organization on Howlat"
+%p= link_to "Accept invitation", accept_invitation_url(token: @invitation.token)

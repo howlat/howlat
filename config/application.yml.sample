@@ -1,0 +1,30 @@
+# Add account credentials and API keys here.
+# See http://railsapps.github.io/rails-environment-variables.html
+# This file should be listed in .gitignore to keep your settings secret!
+# Each entry sets a local environment variable and overrides ENV variables in the Unix shell.
+# For example, setting:
+# GMAIL_USERNAME: Your_Gmail_Username
+# makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
+# Add application configuration variables here, as shown below.
+#
+DOMAIN_NAME: localhost:3000
+ADMIN_NAME: Joe Smith
+ADMIN_EMAIL: someemail@address.com
+ADMIN_PASSWORD: somepassword
+ROLES: [admin, user, guest]
+# Mail
+GMAIL_USERNAME: SEE SECURE.VIM
+GMAIL_PASSWORD: SEE SECURE.VIM
+# OAUTH
+GOOGLE_KEY:      SEE SECURE.VIM
+GOOGLE_SECRET:   SEE SECURE.VIM
+GITHUB_KEY:      SEE SECURE.VIM
+GITHUB_SECRET:   SEE SECURE.VIM
+FACEBOOK_KEY:    SEE SECURE.VIM
+FACEBOOK_SECRET: SEE SECURE.VIM
+TWITTER_KEY:     SEE SECURE.VIMUJqA
+TWITTER_SECRET:  SEE SECURE.VIM
+# AWS
+AWS_ACCESS_KEY_ID:     SEE SECURE.VIM
+AWS_SECRET_ACCESS_KEY: SEE SECURE.VIM
+AWS_BUCKET:            SEE SECURE.VIM

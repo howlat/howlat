@@ -1,0 +1,11 @@
+= simple_form_for [@user, @preferences] do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :audio_volume, as: :range
+    = f.input :audio_notification, include_blank: false
+    = f.input :desktop_notification, include_blank: false
+    = f.input :email_notification
+    .form-group
+      = f.submit class: 'btn btn-primary'
+

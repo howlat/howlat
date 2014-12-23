@@ -1,0 +1,13 @@
+.modal{id: "oauth-signup", "tabindex"=> "-1", "role"=> "dialog", "aria-hidden"=>"true"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h4.modal-title Please enter your email to complete process
+      .modal-body
+        = render 'form'
+:coffee
+  $ ->
+    $("#oauth-signup").modal
+      backdrop: 'static',
+      keyboard: false,
+      show: true

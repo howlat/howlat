@@ -1,0 +1,25 @@
+- content_for :header, "Sign up"
+.row
+  .col-md-6
+    .panel.panel-info
+      .panel-heading
+        %h4 Fill the form below
+      .panel-body
+        = simple_form_for(@user, url: users_path, html: { class: 'form-vertical', id: 'registration_form', method: :post }) do |f|
+          = f.error_notification
+          %h4 Account
+          = f.input :name, hint: 'Account name'
+          = f.input :email, required: true, input_html: { value: session[:email] }
+          = f.input :password, required: true
+          %h4 Profile
+          = f.fields_for :profile do |p|
+            = p.input :name
+          = f.button :submit, 'Sign up', class: 'btn-primary'
+  .col-md-6
+    .panel.panel-info
+      .panel-heading
+        %h4 Use 3rd party account
+      .panel-body
+        - Identity.supported.each do |identity|
+          %p= link_to "Sign up with #{identity.provider_name}", "auth/#{identity.provider}?context=signup", class: 'btn btn-primary'
+

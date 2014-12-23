@@ -1,0 +1,12 @@
+.list-group-item
+  .row
+    .col-md-9
+      %h5
+        = content_tag :span, nil, class: 'glyphicon glyphicon-lock' if room.private?
+        = content_tag :span, nil, class: 'glyphicon' if room.public?
+        = room.name
+    .col-md-3.pull-right.btn-group
+      = link_to room_friendly_path(room.name), class: 'btn btn-sm btn-success' do
+        %span.glyphicon.glyphicon-log-in
+      = link_to edit_room_path(room), class: 'btn btn-sm btn-default' do
+        %span.glyphicon.glyphicon-cog

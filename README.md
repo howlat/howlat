@@ -33,7 +33,7 @@ The hosted application is written in Ruby on Rails (version 4.x) and the client 
 
 ## Authentication
 
-The application will provide for authencitation via Github, and via traditional username & password.
+The application will provide for authentication via Github, and via traditional username & password.
 
 ## Authorization
 

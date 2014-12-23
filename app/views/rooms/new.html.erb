@@ -1,0 +1,70 @@
+<%- content_for :header, "New Room" %>
+<%= javascript_include_tag "room-wizard" %>
+<div ng-app="wizard">
+  <form name="wizardForm" ng-controller="WizardCtrl" ng-submit="submit()" class="form form-horizontal">
+    <div class="hide" ng-init="initialize({ connected_accounts: <%= current_user.identities.pluck(:provider).to_json %> })"></div>
+    <input type="hidden" name="room.base" server-errors ng-model="room.base" />
+    <div class="alert alert-error" ng-show="errors['room.base']">
+      {{ errors['room.base'] }}
+    </div>
+    <h4>Room</h4>
+    <div class="form-group required" ng-class="{error: wizardForm['room.name'].$error.server === true}">
+      <label class="control-label required">
+        <abbr title="required">*</abbr>
+        Name
+      </label>
+      <div class="">
+        <input type="text" name="room.name" server-errors ng-model="room.name" class="form-control"/>
+        <span class="help-inline" ng-show="wizardForm['room.name'].$error.server === true">{{ errors['room.name'] }}</span>
+      </div>
+    </div>
+    <fieldset>
+      <h4>Repository</h4>
+      <div class="form-group required" ng-class="{error: wizardForm['room.repository.type'].$error.server === true}">
+        <label class="control-label required">
+          <abbr title="required">*</abbr>
+          Type
+        </label>
+        <div ng-repeat="type in repository_types | filter: { active: 1}">
+          <label class="radio" ng-class="{'text-info': room.repository_attributes.type == type.value}">
+            <input server-errors type="radio" name="room.repository.type" value="{{type.value}}" ng-model="room.repository_attributes.type"/>
+            {{type.name}}
+          </label>
+        </div>
+        <div class="controls" ng-show="wizardForm['room.repository.type'].$error.server === true">
+          <p><span class="help-inline">{{ errors['room.repository.type'] }}</span></p>
+        </div>
+      </div>
+      <div class="form-group required" ng-class="{error: wizardForm['room.repository.name'].$error.server === true}">
+        <label class="control-label required">
+          <abbr title="required">*</abbr>
+          Name
+        </label>
+        <input type="hidden" server-errors name="room.repository.name" value="" ng-model="room.repository_attributes.name" />
+        <div class="controls" ng-repeat="repository in repositories">
+          <label class="radio">
+            <input type="radio" server-errors name="room.repository.name" value="{{repository.full_name}}" ng-model="room.repository_attributes.name"/>
+            <strong ng-class="{'text-success': repository.permissions.admin}">{{repository.name}}</strong>&nbsp;
+            <span>(<a href="https://github.com/{{repository.full_name}}">{{repository.full_name}}</a>)</span>
+            <span ng-show="repository.permissions.admin" class="badge badge-success">admin</span>
+            <span ng-show="repository.starred" class=""><i class="icon-star"></i></span>
+            <p style="margin:0px;"><small>{{ repository.description }}</small></p>
+          </label>
+        </div>
+        <div class="controls" ng-show="wizardForm['room.repository.name'].$error.server === true">
+          <span class="help-inline">{{ errors['room.repository.name'] }}</span>
+        </div>
+        <div ng-show="loadingRepos" class="row-fluid">
+          <div class="progress progress-striped active span6 offset3">
+            <div class="bar span12">Loading Repositories...</div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <div class="form-actions">
+      <button type="submit" ng-class="progress.class" class="btn">
+        {{progress.text}}
+      </button>
+    </div>
+  </form>
+</div>
