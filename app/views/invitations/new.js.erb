@@ -1,9 +1,0 @@
-(function() {
-  var modal = $("#invitation-modal");
-  modal.find('.modal-header .header').html('<%=j "Invite people to #{@invitation.room.name}" %>');
-  var body = "<%=j render 'form' %>";
-  body += "<%=j render partial: 'table', locals: { room: @room } %>";
-  modal.find('.modal-body').html(body);
-  modal.modal('show');
-  modal.find('input:first').focus();
-})();

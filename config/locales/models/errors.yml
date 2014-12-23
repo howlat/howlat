@@ -1,5 +1,0 @@
-en:
-  activerecord:
-    errors:
-      messages:
-        room_membership: 'has already access to this room'

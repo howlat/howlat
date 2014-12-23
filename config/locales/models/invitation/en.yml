@@ -1,8 +1,0 @@
-en:
-  activerecord:
-    errors:
-      models:
-        invitation:
-          attributes:
-            email:
-              taken: 'is already invited'

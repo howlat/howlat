@@ -1,9 +1,0 @@
-.progress.progress-striped.active.row-fluid{style: "display: none;"}
-  .bar.span12
-= simple_form_for([@organization, @room, @invitation], format: :js, remote: true) do |f|
-  .form-inputs.form-inline
-    = f.input :email, hint: 'Enter email address you want to invite', label: false do
-      .row-fluid
-        = f.input_field :email, class: 'span9', data: { provide: "typeahead", source: "#{@emails.to_json}" }
-        = f.submit 'Invite', class: 'btn btn-primary span3'
-= render 'script'

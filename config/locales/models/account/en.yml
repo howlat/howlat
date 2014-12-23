@@ -1,7 +1,0 @@
-en:
-  activerecord:
-    models:
-      account: 'Account'
-    attributes:
-      account: &account_attributes
-        jid: 'Jabber ID'

@@ -1,8 +1,0 @@
-development:
-  app_url: "http://0.0.0.0:9000/"
-test:
-  app_url: "http://0.0.0.0:9000/"
-production:
-  app_url: "http://parley-dev.s3.amazonaws.com/howlatjs/"
-staging:
-  app_url: "http://parley-dev.s3.amazonaws.com/howlatjs/"

@@ -1,7 +1,0 @@
-- content_for :header, "Can't log in?"
-%p
-  If you have forgotten your password or don't have one, type in your account email address below and we'll send you a new password.
-= simple_form_for(@user, url: password_resets_path, method: :post, html: { class: "form form-vertical"}) do |f|
-  = f.input :email, label: false
-  = f.submit "Reset my password", class: 'btn btn-primary'
-  = link_to "Back to login", login_path, class: 'btn'
